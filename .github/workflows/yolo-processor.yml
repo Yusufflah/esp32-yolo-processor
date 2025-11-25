@@ -1,16 +1,10 @@
 name: YOLO Image Processor
 
 on:
-  repository_dispatch:
-    types: [trigger-yolo-processing]
+  schedule:
+    # Run every 2 minutes to check for new images
+    - cron: '*/30 * * * *'
   workflow_dispatch:
-    inputs:
-      image_url:
-        description: 'Image URL to process'
-        required: true
-      filename:
-        description: 'Filename'
-        required: true
 
 env:
   SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -29,19 +23,10 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Install system dependencies for OpenCV
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libglib2.0-0 libsm6 libxrender1 libxext6
-
-    - name: Install Python dependencies
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install supabase requests Pillow ultralytics opencv-python-headless numpy
-
-    - name: Download YOLO model
-      run: |
-        python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
+        pip install supabase requests pillow ultralytics opencv-python numpy
 
     - name: Run YOLO Image Processor
       run: python yolo_processor.py
