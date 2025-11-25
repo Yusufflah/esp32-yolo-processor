@@ -69,7 +69,7 @@ def upload_processed_image(image, filename):
         img_byte_arr.seek(0)
         
         # Upload to processed-images bucket
- uploaded_file = supabase.storage.from_("processed-images").upload(
+        uploaded_file = supabase.storage.from_("processed-images").upload(
             f"processed_{filename}", 
             img_byte_arr.getvalue(),
             {"content-type": "image/jpeg"}
