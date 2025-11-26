@@ -16,7 +16,7 @@ SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY")  # Use service key for wri
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Load YOLO model (adjust path as needed)
-model = YOLO('yolov8n.pt')  # You can use yolov8s.pt, yolov8m.pt, etc.
+model = YOLO('yolov5nu.pt')  # You can use yolov8s.pt, yolov8m.pt, etc.
 
 def download_image(image_url):
     """Download image from URL"""
