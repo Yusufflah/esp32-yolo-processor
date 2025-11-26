@@ -1,10 +1,6 @@
 name: YOLO Image Processor
 
 on:
-  schedule:
-    # Run every 2 minutes to check for new images
-    - cron: '*/2 * * * *'
-  workflow_dispatch:
 
 jobs:
   process-images:
