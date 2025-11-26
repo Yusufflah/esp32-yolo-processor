@@ -72,8 +72,7 @@ def upload_processed_image(image, filename):
  uploaded_file = supabase.storage.from_("processed-images").upload(
             f"processed_{filename}", 
             img_byte_arr.getvalue(),
-            {"content-type": "image/jpeg"}
-        )
+            {"content-type": "image/jpeg"})
         
         # Get public URL
         public_url = supabase.storage.from_("processed-images").get_public_url(f"processed_{filename}")
